@@ -27,6 +27,7 @@ class GuruLinkForm extends Component {
 		// this.props.addGuruLink(this.props.techId, state.title, state.url, state.comment);
 		this.props.addGuruLink(state.title, state.url, state.comment);
 		console.log(state.input);
+		this.props.history.push('/techinfo');
 	}
 
 	render() {

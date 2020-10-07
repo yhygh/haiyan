@@ -1,5 +1,7 @@
 var db = require('../models');
 
+// DO NOT DELETE this function for now!
+// One way to create a GuruLink
 // exports.createGurulink = function(req, res) {
 // 	db.Techsection.findById(req.params.techsectionId).then(function(foundTechsection) {
 // 		db.Gurulink

@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var todoSchema = new mongoose.Schema({
-	name: {
+	task: {
 		type: String,
-		required: 'Name cannot be blank'
+		required: true
 	},
 	completed: {
 		type: Boolean,

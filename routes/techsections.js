@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models');
-var helpers = require('../helpers/techsections');
+var helpers = require('../handlers/techsections');
 
 router.route('/').get(helpers.getTechsections).post(helpers.createTechsection);
 router

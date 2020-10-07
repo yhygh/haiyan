@@ -45,6 +45,7 @@ exports.updateTodo = function(req, res) {
 		});
 };
 
+// could use findByIdAndRemove()
 exports.deleteTodo = function(req, res) {
 	db.Todo
 		.deleteOne({ _id: req.params.todoId })

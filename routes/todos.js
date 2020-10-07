@@ -1,45 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models');
-var helpers = require('../helpers/todos');
+var helpers = require('../handlers/todos');
 
-router.route('/').get(helpers.getTodos).post(helpers.createTodos);
+const { loginRequired } = require('../middleware/auth');
 
-router.route('/:todoId').get(helpers.getTodo).put(helpers.updateTodo).delete(helpers.deleteTodo);
+//router.route('/').get(helpers.getTodos).post(helpers.createTodos);
+router.route('/').get(helpers.getTodos);
+// router.post('/', loginRequired, helpers.createTodos);
+router.route('/').post(loginRequired, helpers.createTodos);
 
-// use helpers to clean up
-
-// router.get('/:todoId', function(req, res) {
-// 	db.Todo
-// 		.findById(req.params.todoId)
-// 		.then(function(foundTodo) {
-// 			res.json(foundTodo);
-// 		})
-// 		.catch(function(err) {
-// 			res.send(err);
-// 		});
-// });
-
-// router.put('/:todoId', function(req, res) {
-// 	db.Todo
-// 		.findOneAndUpdate({ _id: req.params.todoId }, req.body, { new: true })
-// 		.then(function(todo) {
-// 			res.json(todo);
-// 		})
-// 		.catch(function(err) {
-// 			res.send(err);
-// 		});
-// });
-
-// router.delete('/:todoId', function(req, res) {
-// 	db.Todo
-// 		.deleteOne({ _id: req.params.todoId })
-// 		.then(function() {
-// 			res.json({ message: 'We deleted it!' });
-// 		})
-// 		.catch(function(err) {
-// 			res.send(err);
-// 		});
-// });
+//router.route('/:todoId').get(helpers.getTodo).put(helpers.updateTodo).delete(helpers.deleteTodo);
+router.route('/:todoId').get(helpers.getTodo);
+router.route('/:todoId').put(loginRequired, helpers.updateTodo).delete(loginRequired, helpers.deleteTodo);
 
 module.exports = router;
