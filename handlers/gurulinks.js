@@ -1,77 +1,60 @@
 var db = require('../models');
 
-// DO NOT DELETE this function for now!
-// One way to create a GuruLink
-// exports.createGurulink = function(req, res) {
-// 	db.Techsection.findById(req.params.techsectionId).then(function(foundTechsection) {
-// 		db.Gurulink
-// 			.create(req.body)
-// 			.then(function(newLink) {
-// 				foundTechsection.links.push(newLink);
-// 				foundTechsection.save();
-// 				res.status(201).json(newLink);
-// 			})
-// 			.catch(function(err) {
-// 				res.send(err);
-// 			});
-// 	});
-// };
-
-//My experiment to chain it. It works. But maybe there are better ways.
-exports.createGurulink = function(req, res) {
-	const obj = {};
-	db.Techsection
-		.findById(req.params.techsectionId)
-		.then(function(foundTechsection) {
-			obj.foundTechsection = foundTechsection;
-			return db.Gurulink.create(req.body);
-		})
-		.then(function(newLink) {
-			obj.foundTechsection.links.push(newLink);
-			obj.foundTechsection.save();
-			res.status(201).json(newLink);
-		})
-		.catch(function(err) {
-			res.send(err);
-		});
+// /api/gl/ts/:techsectionId
+// test using httpie
+//     http POST localhost:4000/api/gl/ts/5f7f6e80c64f48fcd4699a51 "Authorization:Bearer token" title="sometitle" url="http://www.python.test"
+exports.createGurulink = async function(req, res, next) {
+	try {
+		let newLink = await db.Gurulink.create(req.body);
+		let foundTechsection = await db.Techsection.findById(req.params.techsectionId);
+		foundTechsection.links.push(newLink);
+		foundTechsection.save();
+		return res.status(201).json(newLink);
+	} catch (err) {
+		return next(err);
+	}
 };
 
-exports.getGurulink = function(req, res) {
-	db.Gurulink
-		.findById(req.params.gurulinkId)
-		.then(function(foundGurulink) {
-			res.json(foundGurulink);
-		})
-		.catch(function(err) {
-			res.send(err);
-		});
+// /api/gl/:gurulinkId
+// test using httpie
+//    http GET localhost:4000/api/gl/5f7643326b330071aa57c92a  "Authorization:Bearer token"
+exports.getGurulink = async function(req, res, next) {
+	try {
+		let foundGurulink = await db.Gurulink.findById(req.params.gurulinkId);
+		return res.status(200).json(foundGurulink);
+	} catch (err) {
+		return next(err);
+	}
 };
 
-exports.updateGurulink = function(req, res) {
-	db.Gurulink
-		.findOneAndUpdate({ _id: req.params.gurulinkId }, req.body, { new: true })
-		.then(function(gurulink) {
-			res.json(gurulink);
-		})
-		.catch(function(err) {
-			res.send(err);
-		});
+// /api/gl/:gurulinkId
+// test using httpie
+//      http PUT localhost:4000/api/gl/5f7f874cdb3399ffcc78e56d
+//      "Authorization:Bearer token" title="updated title" url="newurl"
+exports.updateGurulink = async function(req, res, next) {
+	try {
+		let gurulink = await db.Gurulink.findByIdAndUpdate({ _id: req.params.gurulinkId }, req.body, { new: true });
+		return res.status(200).json(gurulink);
+	} catch (err) {
+		return next(err);
+	}
 };
 
-exports.deleteGurulink = function(req, res) {
-	db.Techsection.findById(req.params.techsectionId).then(function(foundTechsection) {
-		db.Gurulink
-			.deleteOne({ _id: req.params.gurulinkId })
-			.then(function() {
-				const pos = foundTechsection.links.indexOf(req.params.gurulinkId);
-				foundTechsection.links.splice(pos, 1);
-				foundTechsection.save();
-				res.json({ message: 'We deleted the gurulink!' });
-			})
-			.catch(function(err) {
-				res.send(err);
-			});
-	});
+// /api/gl/:gurulinkId/ts/:techsectionId
+// test using httpie
+//    http DELETE localhost:4000/api/gl/5f7f863955633eff920f0c72/ts/5f7f6e80c64f48fcd4699a51
+//       "Authorization:Bearer token"
+exports.deleteGurulink = async function(req, res, next) {
+	try {
+		let foundTechsection = await db.Techsection.findById(req.params.techsectionId);
+		let foundGurulink = await db.Gurulink.findByIdAndRemove({ _id: req.params.gurulinkId });
+		const pos = foundTechsection.links.indexOf(req.params.gurulinkId);
+		foundTechsection.links.splice(pos, 1);
+		foundTechsection.save();
+		res.status(200).json(foundGurulink);
+	} catch (err) {
+		return next(err);
+	}
 };
 
 module.exports = exports;

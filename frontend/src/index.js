@@ -6,7 +6,7 @@ import { configureStore } from './store';
 import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import { setAuthorizationToken, setCurrentUser } from './store/actions/auth';
+import { setAuthorizationToken, setCurrentUser } from './store/actions';
 import JwtDecode from 'jwt-decode';
 
 const store = configureStore();

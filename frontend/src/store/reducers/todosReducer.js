@@ -9,8 +9,9 @@ export default function(state = initialState, action) {
 	// debugger;
 	switch (action.type) {
 		case GET_TODOS:
-			return { ...state, todos: action.data };
+			return { ...state, todos: action.todos };
 		case ADD_TODO:
+			// debugger;
 			return { ...state, todos: [ ...state.todos, action.todo ] };
 		case REMOVE_TODO:
 			let todos = state.todos.filter((val) => val._id !== action.id);

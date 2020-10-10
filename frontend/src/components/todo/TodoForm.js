@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+// import requireAuth from '../../hocs/requireAuth';
+import { connect } from 'react-redux';
+import { addTodo } from '../../store/actions';
 
 class TodoForm extends Component {
 	constructor(props) {
 		super(props);
-		console.log(`TodoForm props ...`);
+		console.log(`TodoForm constructor props ...`);
 		console.log(props);
 
 		this.state = { task: '' };
 		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleAddTodo = this.handleAddTodo.bind(this);
 	}
 
 	handleChange(e) {
@@ -17,16 +20,21 @@ class TodoForm extends Component {
 		});
 	}
 
-	handleSubmit(e) {
+	handleAddTodo(e) {
 		e.preventDefault(); // make sure the page doesn't refresh
-		this.props.handleSubmit(this.state.task);
-		e.target.reset();
+		console.log(`inside TodoForm, handleAddTodo ...`);
+		this.props.addTodo(this.state.task);
+
+		this.setState({ task: '' });
+
+		// e.target.reset();
 		this.props.history.push('/todos');
+		// this.props.history.goBack();
 	}
 
 	render() {
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form onSubmit={this.handleAddTodo}>
 				<input type="text" name="task" value={this.state.task} onChange={this.handleChange} />
 				<button>Add a task</button>
 			</form>
@@ -34,4 +42,11 @@ class TodoForm extends Component {
 	}
 }
 
-export default TodoForm;
+function mapStateToProps(state) {
+	return {
+		currentUser: state.currentUser
+	};
+}
+
+export default connect(mapStateToProps, { addTodo })(TodoForm);
+// export default TodoForm;

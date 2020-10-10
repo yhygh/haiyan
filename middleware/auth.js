@@ -19,18 +19,18 @@ exports.loginRequired = function(req, res, next) {
 	} catch (err) {
 		return next({
 			status: 401,
-			message: 'Please log in first'
+			message: 'Please log in first second'
 		});
 	}
 };
 
-// /api/users/:id/messages
+// /api/users/:user_id/messages
 // make sure we get the correct user - Authorization
 exports.ensureCorrectUser = function(req, res, next) {
 	try {
 		const token = req.headers.authorization.split(' ')[1];
 		jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
-			if (decoded && decoded.id === req.params.id) {
+			if (decoded && decoded.id === req.params.user_id) {
 				return next();
 			} else {
 				return next({

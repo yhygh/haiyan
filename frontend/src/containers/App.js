@@ -7,24 +7,23 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import Home from '../components/Home';
 import AuthForm from '../components/AuthForm';
-import { authUser } from '../store/actions/auth';
-import { removeError } from '../store/actions/errors';
+import { authUser, removeError } from '../store/actions';
 import requireAuth from '../hocs/requireAuth';
 
 import MessageForm from './MessageForm';
+import TodoForm from '../components/todo/TodoForm';
 
 import TechSections from './TechSections';
 import TodoList from './TodoList';
 import Suggestion from '../components/Suggestion';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
+		// console.log(`props before ... ${this.props}`);
+		// console.log(`props after destructure`);
+		// console.log(this.props);
 		const { authUser, errors, removeError, currentUser } = this.props;
-		console.log(`props inside App.js ... ${this.props}`);
+
 		return (
 			<div className="App">
 				<Router>
@@ -34,17 +33,16 @@ class App extends Component {
 					<div className="container">
 						<Switch>
 							{/* <Route path="/" exact component={Home} /> */}
+							<Route path="/" exact render={(props) => <Home currentUser={currentUser} {...props} />} />
 							<Route
-								exact
-								path="/"
-								exact
-								render={(props) => <Home currentUser={currentUser} {...props} />}
-							/>
-							<Route
-								exact
 								path="/suggestion"
 								exact
 								render={(props) => <Suggestion currentUser={currentUser} {...props} />}
+							/>
+							<Route
+								path="/todos"
+								exact
+								render={(props) => <TodoList currentUser={currentUser} {...props} />}
 							/>
 							<Route
 								exact
@@ -55,7 +53,7 @@ class App extends Component {
 										errors={errors}
 										onAuth={authUser}
 										buttonText="Log in"
-										heading="Welcome Back."
+										heading="Please Log In"
 										{...props}
 									/>
 								)}
@@ -70,15 +68,15 @@ class App extends Component {
 										onAuth={authUser}
 										signUp
 										buttonText="Sign me up!"
-										heading="Join Warbler Today."
+										heading="Join Haiyan Friends Circle Today."
 										{...props}
 									/>
 								)}
 							/>
-							<Route path="/todos" component={TodoList} />
 							<Route path="/techinfo" component={TechSections} />
 							<Route path="/users/:id/messages/new" component={requireAuth(MessageForm)} />
-							<TechSections />
+							<Route path="/todos/new" component={requireAuth((props) => <TodoForm {...props} />)} />
+							{/* <TechSections /> */}
 						</Switch>
 					</div>
 				</Router>

@@ -7,8 +7,7 @@ class AuthForm extends Component {
 		this.state = {
 			email: '',
 			username: '',
-			password: '',
-			profileImageUrl: ''
+			password: ''
 		};
 	}
 
@@ -25,7 +24,8 @@ class AuthForm extends Component {
 			.onAuth(authType, this.state)
 			.then(() => {
 				console.log('logged in');
-				this.props.history.push('/');
+				// this.props.history.push('/');
+				this.props.history.goBack();
 			})
 			.catch(() => {
 				return;
@@ -33,7 +33,7 @@ class AuthForm extends Component {
 	};
 
 	render() {
-		const { email, username, password, profileImageUrl } = this.state;
+		const { email, username, password } = this.state;
 		const { heading, buttonText, signUp, errors, history, removeError } = this.props;
 
 		// If there's a change in the router, we'll call removeError()
@@ -75,15 +75,6 @@ class AuthForm extends Component {
 										onChange={this.handleChange}
 										value={username}
 										type="text"
-									/>
-									<label htmlFor="image-url">Image Url:</label>
-									<input
-										className="form-control"
-										id="image-url"
-										name="profileImageUrl"
-										onChange={this.handleChange}
-										type="text"
-										value={profileImageUrl}
 									/>
 								</div>
 							)}

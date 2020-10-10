@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var gurulinkSchema = new mongoose.Schema({
 	title: {
 		type: String,
-		required: 'title cannot be blank'
+		required: true
 	},
 	url: {
 		type: String,

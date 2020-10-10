@@ -1,5 +1,5 @@
 import { apiCall } from '../../services/api';
-import { addError } from './errors';
+import { addError } from './errorsActions';
 
 import { LOAD_MESSAGES, REMOVE_MESSAGE } from './types';
 

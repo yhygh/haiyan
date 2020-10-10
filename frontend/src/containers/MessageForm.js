@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postNewMessage } from '../store/actions/messages';
+import { postNewMessage } from '../store/actions';
 
 class MessageForm extends Component {
 	constructor(props) {
@@ -14,7 +14,8 @@ class MessageForm extends Component {
 		event.preventDefault();
 		this.props.postNewMessage(this.state.message);
 		this.setState({ message: '' });
-		this.props.history.push('/');
+		// this.props.history.push('/');
+		this.props.history.goBack();
 	};
 
 	render() {

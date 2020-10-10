@@ -16,6 +16,7 @@ export function setTokenHeader(token) {
  */
 export function apiCall(method, path, data) {
 	console.log(`inside apiCall ...`);
+	// debugger;
 	console.log(method);
 	console.log(path);
 	console.log(data);

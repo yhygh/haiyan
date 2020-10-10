@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../store/actions/auth';
+import { logout } from '../store/actions';
 import Logo from '../images/warbler-logo.png';
 
 class Navbar extends Component {
@@ -19,15 +19,18 @@ class Navbar extends Component {
 							<img src={Logo} alt="Warbler Home" />
 						</Link>
 
-						<div class="collapse navbar-collapse" id="navbarNav">
-							<ul class="navbar-nav">
-								<li class="nav-item nav-link active">
-									<Link to="/todos">See my todos!</Link>
+						<div className="collapse navbar-collapse" id="navbarNav">
+							<ul className="navbar-nav">
+								<li className="nav-item nav-link active">
+									<Link to="/">Home</Link>
 								</li>
-								<li class="nav-item nav-link">
+								<li className="nav-item nav-link active">
+									<Link to="/todos">My todos!</Link>
+								</li>
+								<li className="nav-item nav-link">
 									<Link to="/techinfo">My Tech Warehouse</Link>
 								</li>
-								<li class="nav-item nav-link">
+								<li className="nav-item nav-link">
 									<Link to="/suggestion">Other Suggestions</Link>
 								</li>
 							</ul>

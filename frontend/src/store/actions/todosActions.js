@@ -1,70 +1,78 @@
+import { apiCall } from '../../services/api';
+import { addError } from './errorsActions';
+
 import { ADD_TODO, REMOVE_TODO, GET_TODOS } from './types';
 
-function handleTodos(data) {
-	// debugger;
-	console.log(`todos data returned: `);
-	console.log(data);
-	return {
-		type: GET_TODOS,
-		data
-	};
-}
+export const loadTodos = (todos) => ({
+	type: GET_TODOS,
+	todos
+});
 
-function handleAdd(todo) {
-	// debugger;
-	return {
-		type: ADD_TODO,
-		todo
-	};
-}
+export const remove = (id) => ({
+	type: REMOVE_TODO,
+	id
+});
 
-function handleRemove(id) {
-	// debugger;
-	return {
-		type: REMOVE_TODO,
-		id
-	};
-}
+export const addNewTodo = (todo) => ({
+	type: ADD_TODO,
+	todo
+});
 
-export function getTodos() {
-	// debugger;
+export const fetchTodos = () => {
 	return (dispatch) => {
-		return fetch('http://localhost:4000/api/todos')
+		return apiCall('get', '/api/todos')
 			.then((res) => {
-				console.log(`res ...`);
-				console.log(res);
-
-				return res.json();
+				console.log(`inside todosActions fetch response: ${res}`);
+				dispatch(loadTodos(res));
 			})
-			.then((data) => dispatch(handleTodos(data)))
-			.catch((err) => console.log('SOMETHING WENT WRONG in getting todos!', err));
+			.catch((err) => {
+				console.log(`inside todoActions fetch, error is ${err}`);
+				dispatch(addError(err.message));
+			});
 	};
-}
+};
 
-export function addTodo(task) {
-	// debugger;
-	return (dispatch) => {
-		return fetch('http://localhost:4000/api/todos', {
-			method: 'POST',
-			headers: new Headers({
-				'Content-Type': 'application/json'
-			}),
-			body: JSON.stringify({ task })
+export const addTodo = (task) => (dispatch) => {
+	return apiCall('post', '/api/todos', { task })
+		.then((res) => {
+			console.log(`inside todosActions, addTodo res: `);
+			console.log(res);
+			dispatch(addNewTodo(res));
 		})
-			.then((res) => res.json())
-			.then((data) => dispatch(handleAdd(data)))
-			.catch((err) => console.log('SOMETHING WENT WRONG', err));
-	};
-}
+		.catch((err) => {
+			// debugger;
+			dispatch(addError(err.message));
+		});
+};
 
-export function removeTodo(id) {
-	// debugger;
+// function handleAdd(todo) {
+// 	// debugger;
+// 	return {
+// 		type: ADD_TODO,
+// 		todo
+// 	};
+// }
+
+// export function addTodo(task) {
+// 	// debugger;
+// 	return (dispatch) => {
+// 		return fetch('http://localhost:4000/api/todos', {
+// 			method: 'POST',
+// 			headers: new Headers({
+// 				'Content-Type': 'application/json'
+// 			}),
+// 			body: JSON.stringify({ task })
+// 		})
+// 			.then((res) => res.json())
+// 			.then((data) => dispatch(handleAdd(data)))
+// 			.catch((err) => console.log('SOMETHING WENT WRONG', err));
+// 	};
+// }
+
+export const removeTodo = (id) => {
 	return (dispatch) => {
-		return fetch(`http://localhost:4000/api/todos/${id}`, {
-			method: 'DELETE'
-		})
-			.then((res) => res.json())
-			.then((data) => dispatch(handleRemove(id)))
-			.catch((err) => console.log('SOMETHING WENT WRONG', err));
+		return apiCall('delete', `/api/todos/${id}`)
+			.then(() => dispatch(remove(id)))
+			.catch((err) => dispatch(addError(err.message)));
 	};
-}
+};

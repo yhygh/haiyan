@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var techsectionSchema = new mongoose.Schema({
 	name: {
 		type: String,
-		required: 'Name cannot be blank'
+		required: true
 	},
 	links: [
 		{

@@ -1,64 +1,70 @@
 var db = require('../models');
 
-exports.getTechsections = function(req, res) {
-	db.Techsection
-		.find()
-		.then(async function(techSections) {
-			for (let ts of techSections) {
-				await ts.populate('links').execPopulate();
-			}
-			res.json(techSections);
-		})
-		.catch(function(err) {
-			res.send(err);
-		});
+// /api/ts
+// To test using httpie
+//     http GET localhost:4000/api/ts "Authorization:Bearer token"
+exports.getTechsections = async function(req, res, next) {
+	try {
+		let techSections = await db.Techsection.find();
+
+		for (let ts of techSections) {
+			await ts.populate('links').execPopulate();
+		}
+		return res.status(200).json(techSections);
+	} catch (err) {
+		return next(err);
+	}
 };
 
-exports.createTechsection = function(req, res) {
+// /api/ts
+// To test using httpie
+//    http POST localhost:4000/api/ts "Authorization:Bearer token" name="something"
+exports.createTechsection = async function(req, res, next) {
 	console.log(req.body);
-	db.Techsection
-		.create(req.body)
-		.then(function(newTechsection) {
-			res.status(201).json(newTechsection);
-		})
-		.catch(function(err) {
-			res.send(err);
-		});
+	try {
+		let newTechsection = await db.Techsection.create(req.body);
+		return res.status(201).json(newTechsection);
+	} catch (err) {
+		return next(err);
+	}
 };
 
-exports.getTechsection = function(req, res) {
-	db.Techsection
-		.findById(req.params.techsectionId)
-		.populate('links')
-		.exec() // this line can be removed
-		.then(function(foundTechsection) {
-			res.json(foundTechsection);
-		})
-		.catch(function(err) {
-			res.send(err);
-		});
+// /api/ts/:techsectionId
+// To test using httpie
+exports.getTechsection = async function(req, res, next) {
+	try {
+		let foundTechsection = await db.Techsection.findById(req.params.techsectionId).populate('links');
+		return res.status(200).json(foundTechsection);
+	} catch (err) {
+		return next(err);
+	}
 };
 
-exports.updateTechsection = function(req, res) {
-	db.Techsection
-		.findOneAndUpdate({ _id: req.params.techsectionId }, req.body, { new: true })
-		.then(function(techsection) {
-			res.json(techsection);
-		})
-		.catch(function(err) {
-			res.send(err);
+// /api/ts/:techsectionId
+// To test using httpie
+//    http PUT localhost:4000/api/ts/5f7f6e80c64f48fcd4699a51 "Authorization:Bearer token" name="something" links:='["5f7643326b330071aa57c92a"]
+//    Notice the syntax using := instead of =
+exports.updateTechsection = async function(req, res, next) {
+	try {
+		let techSection = await db.Techsection.findByIdAndUpdate({ _id: req.params.techsectionId }, req.body, {
+			new: true
 		});
+		return res.status(200).json(techSection);
+	} catch (err) {
+		return next(err);
+	}
 };
 
-exports.deleteTechsection = function(req, res) {
-	db.Techsection
-		.deleteOne({ _id: req.params.techsectionId })
-		.then(function() {
-			res.json({ message: 'We deleted the tech section!' });
-		})
-		.catch(function(err) {
-			res.send(err);
-		});
+// /api/ts/:techsectionId
+// To test using httpie
+//    http DELETE localhost:4000/api/ts/5f7f5fc236916ffc0160f2b1 "Authorization:Bearer token"
+exports.deleteTechsection = async function(req, res, next) {
+	try {
+		let foundTechsection = await db.Techsection.findByIdAndRemove({ _id: req.params.techsectionId });
+		return res.status(200).json(foundTechsection);
+	} catch (err) {
+		return next(err);
+	}
 };
 
 module.exports = exports;
