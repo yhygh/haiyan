@@ -5,9 +5,15 @@ import { Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeTodo, fetchTodos } from '../store/actions';
 import requireAuth from '../hocs/requireAuth';
+import { json } from 'body-parser';
 
 class TodoList extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	componentDidMount() {
+		// debugger;
 		this.props.fetchTodos();
 	}
 
@@ -17,16 +23,17 @@ class TodoList extends Component {
 
 	render() {
 		// debugger;
-		const currentUser = this.props;
-
-		// TODO: make sure this is admin later, handle it in the backend
-		const isAdmin = currentUser.currentUser.user.username === 'haiyan';
+		const currentUser = this.props.currentUser;
+		console.log(`is current user admin? currentUser: ${currentUser}`);
+		console.log(currentUser);
 
 		let todos = this.props.todoState.todos.map((todo) => (
-			<Todo removeTodo={this.removeTodo.bind(this, todo._id)} task={todo.task} key={todo._id} isAdmin={isAdmin} />
+			<Todo removeTodo={this.removeTodo.bind(this, todo._id)} task={todo.task} key={todo._id} />
 		));
 
-		return (
+		return this.props.errors && this.props.errors.message ? (
+			<div>{this.props.errors.message} Only the admin can view or edit this page!</div>
+		) : (
 			<div>
 				<h1>Todo List</h1>
 				<Route path="/todos/new" component={requireAuth((props) => <TodoForm {...props} />)} />
@@ -41,7 +48,8 @@ class TodoList extends Component {
 function mapStateToProps(state) {
 	// debugger;
 	return {
-		todoState: state.todos
+		todoState: state.todos,
+		errors: state.errors
 	};
 }
 

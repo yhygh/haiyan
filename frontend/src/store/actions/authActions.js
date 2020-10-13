@@ -27,6 +27,9 @@ export function authUser(type, userData) {
 		return new Promise((resolve, reject) => {
 			return apiCall('post', `/api/auth/${type}`, userData)
 				.then(({ token, ...user }) => {
+					console.log(`authUser user: `);
+					console.log(user);
+
 					localStorage.setItem('jwtToken', token);
 					setAuthorizationToken(token);
 					dispatch(setCurrentUser(user));

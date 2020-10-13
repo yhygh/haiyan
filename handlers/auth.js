@@ -22,11 +22,16 @@ exports.signin = async function(req, res, next) {
 				},
 				process.env.SECRET_KEY
 			);
+
+			const isAdmin = username === process.env.ADMIN;
+
+			// only return isAdmin for signin, not for signup
 			return res.status(200).json({
 				id,
 				username,
 				// profileImageUrl,
-				token
+				token,
+				isAdmin: isAdmin
 			});
 		} else {
 			return next({

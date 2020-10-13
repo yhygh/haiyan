@@ -7,6 +7,8 @@ import requireAuth from '../../hocs/requireAuth';
 
 import { addGuruLink, removeGuruLink } from '../../store/actions';
 
+import ErrorBoundary from '../ErrorBoundary';
+
 class TechSection extends Component {
 	constructor(props) {
 		super(props);
@@ -22,9 +24,14 @@ class TechSection extends Component {
 				<p>{this.props.name}</p>
 				<Link to={newGurulinkPath}>Add a new Link</Link>
 
-				<Route
+				{/* <Route
 					path={newGurulinkPath}
 					component={requireAuth((props) => <GuruLinkForm {...props} addGuruLink={this.addGuruLink} />)}
+				/> */}
+
+				<Route
+					path={newGurulinkPath}
+					component={(props) => <GuruLinkForm {...props} addGuruLink={this.addGuruLink} />}
 				/>
 
 				{this.props.links.map((link) => (

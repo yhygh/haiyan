@@ -16,7 +16,6 @@ import MessageForm from './MessageForm';
 import TechSections from './TechSections';
 import TodoList from './TodoList';
 import Suggestion from '../components/Suggestion';
-// import MyTodos from '../components/MyTodos';
 
 class App extends Component {
 	render() {
@@ -38,27 +37,15 @@ class App extends Component {
 							/>
 							{/* <Route
 								path="/todos"
-								render={(props) => <TodoList currentUser={currentUser} errors={errors} {...props} />}
-							/> */}
-
-							{/* <Route
-								path="/todos"
-								render={(props) => {
-									if (!currentUser.isAuthenticated) {
-										return <div>Sign up as Admin</div>;
-									} else {
-										return <TodoList currentUser={currentUser} errors={errors} {...props} />;
-									}
-								}}
-							/> */}
-
-							<Route
-								path="/todos"
 								component={requireAuth((props) => (
 									<TodoList currentUser={currentUser} errors={errors} {...props} />
 								))}
+							/> */}
+							<Route
+								path="/todos"
+								component={(props) => <TodoList currentUser={currentUser} {...props} />}
+								// component={(props) => <TodoList currentUser={currentUser} {...props} />}
 							/>
-
 							<Route
 								path="/techinfo"
 								render={(props) => <TechSections currentUser={currentUser} {...props} />}
@@ -73,7 +60,7 @@ class App extends Component {
 										errors={errors}
 										onAuth={authUser}
 										buttonText="Log in"
-										heading="Please Log In"
+										heading="You are not authorized to view or edit this page!"
 										{...props}
 									/>
 								)}

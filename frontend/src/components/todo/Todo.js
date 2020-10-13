@@ -1,10 +1,10 @@
 // import React, { Component } from 'react';
 import React from 'react';
 
-const Todo = ({ task, removeTodo, isAdmin }) => (
+const Todo = ({ task, removeTodo }) => (
 	<li>
 		{task}
-		{isAdmin && <button onClick={removeTodo}>X</button>}
+		<button onClick={removeTodo}>X</button>
 	</li>
 );
 
