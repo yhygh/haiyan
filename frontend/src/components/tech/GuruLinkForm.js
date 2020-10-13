@@ -24,10 +24,12 @@ class GuruLinkForm extends Component {
 	handleSubmit() {
 		const state = this.state;
 		console.log(`GuruLinkForm submit before ... ${state}`);
-		// this.props.addGuruLink(this.props.techId, state.title, state.url, state.comment);
+		console.log(`GuruLinkForm submit props before ... ${this.props}`);
+		// // this.props.addGuruLink(this.props.techId, state.title, state.url, state.comment);
 		this.props.addGuruLink(state.title, state.url, state.comment);
 		console.log(state.input);
 		this.props.history.push('/techinfo');
+		// this.props.history.goBack();
 	}
 
 	render() {

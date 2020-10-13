@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { addTechSection } from '../../store/actions';
 
 class TechSectionForm extends Component {
 	constructor(props) {
@@ -34,4 +37,4 @@ class TechSectionForm extends Component {
 	}
 }
 
-export default TechSectionForm;
+export default connect(null, { addTechSection })(TechSectionForm);

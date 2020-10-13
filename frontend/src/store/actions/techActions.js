@@ -1,117 +1,87 @@
+import { apiCall } from '../../services/api';
+import { addError } from './errorsActions';
+
 import { ADD_TECHSECTION, REMOVE_TECHSECTION, GET_TECHSECTIONS, ADD_GURULINK, REMOVE_GURULINK } from './types';
 
-function handleTechSections(data) {
-	// debugger;
-	console.log(`tech sections data returned: `);
-	console.log(data);
-	return {
-		type: GET_TECHSECTIONS,
-		data
-	};
-}
+export const loadTechSections = (data) => ({
+	type: GET_TECHSECTIONS,
+	data
+});
 
-function handleAddTechSection(techSection) {
-	// debugger;
-	return {
-		type: ADD_TECHSECTION,
-		techSection
-	};
-}
+export const addNewTechSection = (techSection) => ({
+	type: ADD_TECHSECTION,
+	techSection
+});
 
-function handleRemoveTechSection(id) {
-	// debugger;
-	return {
-		type: REMOVE_TECHSECTION,
-		id
-	};
-}
-
-function handleAddGuruLink(techId, guruLink) {
-	// debugger;
-	return {
-		type: ADD_GURULINK,
-		techId,
-		guruLink
-	};
-}
-
-function handleRemoveGuruLink(techId, linkId) {
-	// debugger;
-	return {
-		type: REMOVE_GURULINK,
-		techId,
-		linkId
-	};
-}
-
-export function getTechSections() {
-	// debugger;
+export const fetchTechSections = () => {
 	return (dispatch) => {
-		// return fetch('http://localhost:4000/api/todos')
-		return fetch('http://localhost:4000/api/ts')
+		return apiCall('get', '/api/ts')
 			.then((res) => {
-				console.log(`res ...`);
-				console.log(res);
-
-				return res.json();
+				console.log(`fetch techSections response: ${res}`);
+				dispatch(loadTechSections(res));
 			})
-			.then((data) => dispatch(handleTechSections(data)))
-			.catch((err) => console.log('SOMETHING WENT WRONG in getting tech sections!', err));
+			.catch((err) => {
+				console.log(`techSections fetch, error is ${err}`);
+				dispatch(addError(err.message));
+			});
 	};
-}
+};
 
-export function addTechSection(val) {
-	// debugger;
-	return (dispatch) => {
-		return fetch('http://localhost:4000/api/ts', {
-			method: 'POST',
-			headers: new Headers({
-				'Content-Type': 'application/json'
-			}),
-			body: JSON.stringify({ name: val })
+export const addTechSection = (val) => (dispatch) => {
+	return apiCall('post', '/api/ts', { name: val })
+		.then((res) => {
+			console.log(res);
+			dispatch(addNewTechSection(res));
 		})
-			.then((res) => res.json())
-			.then((data) => dispatch(handleAddTechSection(data)))
-			.catch((err) => console.log('SOMETHING WENT WRONG', err));
-	};
-}
+		.catch((err) => {
+			// debugger;
+			dispatch(addError(err.message));
+		});
+};
 
-export function removeTechSection(id) {
+export const handleRemoveTechSection = (id) => ({
 	// debugger;
-	return (dispatch) => {
-		return fetch(`http://localhost:4000/api/ts/${id}`, {
-			method: 'DELETE'
-		})
-			.then((res) => res.json())
-			.then((data) => dispatch(handleRemoveTechSection(id)))
-			.catch((err) => console.log('SOMETHING WENT WRONG', err));
-	};
-}
+	type: REMOVE_TECHSECTION,
+	id
+});
 
-export function addGuruLink(techId, title, url, comment) {
-	// debugger;
+export const removeTechSection = (id) => {
 	return (dispatch) => {
-		return fetch(`http://localhost:4000/api/gl/ts/${techId}`, {
-			method: 'POST',
-			headers: new Headers({
-				'Content-Type': 'application/json'
-			}),
-			body: JSON.stringify({ title: title, url: url, comment: comment })
-		})
-			.then((res) => res.json())
-			.then((data) => dispatch(handleAddGuruLink(techId, data))) // data: returned guruLink object
-			.catch((err) => console.log('SOMETHING WENT WRONG', err));
+		return apiCall('delete', `/api/ts/${id}`)
+			.then(() => dispatch(handleRemoveTechSection(id)))
+			.catch((err) => dispatch(addError(err.message)));
 	};
-}
+};
 
-export function removeGuruLink(techId, linkId) {
+export const handleAddGuruLink = (techId, guruLink) => ({
+	type: ADD_GURULINK,
+	techId,
+	guruLink
+});
+
+export const addGuruLink = (techId, title, url, comment) => (dispatch) => {
 	// debugger;
-	return (dispatch) => {
-		return fetch(`http://localhost:4000/api/gl/${linkId}/ts/${techId}`, {
-			method: 'DELETE'
+	return apiCall('post', `/api/gl/ts/${techId}`, { title, url, comment })
+		.then((res) => {
+			console.log(res);
+			dispatch(handleAddGuruLink(techId, res)); // res is the returned guruLink obj
 		})
-			.then((res) => res.json())
-			.then((data) => dispatch(handleRemoveGuruLink(techId, linkId)))
-			.catch((err) => console.log('SOMETHING WENT WRONG', err));
+		.catch((err) => {
+			// debugger;
+			dispatch(addError(err.message));
+		});
+};
+
+export const handleRemoveGuruLink = (techId, linkId) => ({
+	type: REMOVE_GURULINK,
+	techId,
+	linkId
+});
+
+export const removeGuruLink = (techId, linkId) => {
+	return (dispatch) => {
+		return apiCall('delete', `/api/gl/${linkId}/ts/${techId}`)
+			.then(() => dispatch(handleRemoveGuruLink(techId, linkId)))
+			.catch((err) => dispatch(addError(err.message)));
 	};
-}
+};

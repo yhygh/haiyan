@@ -11,7 +11,7 @@ const express = require('express'),
 	gurulinkRoutes = require('./routes/gurulinks'),
 	authRoutes = require('./routes/auth'),
 	messagesRoutes = require('./routes/messages'),
-	{ loginRequired, ensureCorrectUser } = require('./middleware/auth'),
+	{ loginRequired, ensureCorrectUser, ensureAdmin } = require('./middleware/auth'),
 	db = require('./models');
 
 app.use(morgan('tiny'));
@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/api/auth', authRoutes);
-app.use('/api/todos', todoRoutes);
+app.use('/api/todos', loginRequired, ensureAdmin, todoRoutes);
 app.use('/api/ts', techsectionRoutes);
 app.use('/api/gl', gurulinkRoutes);
 app.use('/api/users/:user_id/messages', loginRequired, ensureCorrectUser, messagesRoutes);

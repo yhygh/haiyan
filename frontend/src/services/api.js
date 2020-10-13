@@ -15,11 +15,7 @@ export function setTokenHeader(token) {
  * @param {object} data {optional} data in JSON form for POST requests
  */
 export function apiCall(method, path, data) {
-	console.log(`inside apiCall ...`);
 	// debugger;
-	console.log(method);
-	console.log(path);
-	console.log(data);
 	return new Promise((resolve, reject) => {
 		return axios
 			[method.toLowerCase()](path, data)

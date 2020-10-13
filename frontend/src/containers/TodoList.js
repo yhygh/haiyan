@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Todo from '../components/todo/Todo';
-// import TodoForm from '../components/todo/TodoForm';
+import TodoForm from '../components/todo/TodoForm';
 import { Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { removeTodo, fetchTodos } from '../store/actions';
@@ -19,7 +19,7 @@ class TodoList extends Component {
 		// debugger;
 		const currentUser = this.props;
 
-		// TODO: make sure this is admin later
+		// TODO: make sure this is admin later, handle it in the backend
 		const isAdmin = currentUser.currentUser.user.username === 'haiyan';
 
 		let todos = this.props.todoState.todos.map((todo) => (
@@ -29,17 +29,7 @@ class TodoList extends Component {
 		return (
 			<div>
 				<h1>Todo List</h1>
-				{/* <Route
-					path="/todos/new"
-					component={(props) => {
-						return requireAuth(<TodoForm {...props} />);
-					}}
-					// component={requireAuth((props) => <TodoForm {...props} />)}
-				/> */}
-
-				{/* <div>
-					<TodoForm {...this.props} />
-				</div> */}
+				<Route path="/todos/new" component={requireAuth((props) => <TodoForm {...props} />)} />
 				<Link to="/todos/new">Add a task</Link>
 				<div>{todos}</div>
 				{/* <Route exact path="/todos" component={() => <div>{todos}</div>} /> */}
@@ -52,7 +42,6 @@ function mapStateToProps(state) {
 	// debugger;
 	return {
 		todoState: state.todos
-		// errors: state.errors
 	};
 }
 

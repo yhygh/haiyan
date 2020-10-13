@@ -11,19 +11,17 @@ import { authUser, removeError } from '../store/actions';
 import requireAuth from '../hocs/requireAuth';
 
 import MessageForm from './MessageForm';
-import TodoForm from '../components/todo/TodoForm';
+// import TodoForm from '../components/todo/TodoForm';
 
 import TechSections from './TechSections';
 import TodoList from './TodoList';
 import Suggestion from '../components/Suggestion';
+// import MyTodos from '../components/MyTodos';
 
 class App extends Component {
 	render() {
-		// console.log(`props before ... ${this.props}`);
-		// console.log(`props after destructure`);
-		// console.log(this.props);
 		const { authUser, errors, removeError, currentUser } = this.props;
-
+		console.log(currentUser);
 		return (
 			<div className="App">
 				<Router>
@@ -32,17 +30,39 @@ class App extends Component {
 					</div>
 					<div className="container">
 						<Switch>
-							{/* <Route path="/" exact component={Home} /> */}
 							<Route path="/" exact render={(props) => <Home currentUser={currentUser} {...props} />} />
 							<Route
 								path="/suggestion"
 								exact
 								render={(props) => <Suggestion currentUser={currentUser} {...props} />}
 							/>
+							{/* <Route
+								path="/todos"
+								render={(props) => <TodoList currentUser={currentUser} errors={errors} {...props} />}
+							/> */}
+
+							{/* <Route
+								path="/todos"
+								render={(props) => {
+									if (!currentUser.isAuthenticated) {
+										return <div>Sign up as Admin</div>;
+									} else {
+										return <TodoList currentUser={currentUser} errors={errors} {...props} />;
+									}
+								}}
+							/> */}
+
 							<Route
 								path="/todos"
-								exact
-								render={(props) => <TodoList currentUser={currentUser} {...props} />}
+								component={requireAuth((props) => (
+									<TodoList currentUser={currentUser} errors={errors} {...props} />
+								))}
+							/>
+
+							<Route
+								path="/techinfo"
+								render={(props) => <TechSections currentUser={currentUser} {...props} />}
+								// component={TechSections}
 							/>
 							<Route
 								exact
@@ -73,10 +93,8 @@ class App extends Component {
 									/>
 								)}
 							/>
-							<Route path="/techinfo" component={TechSections} />
 							<Route path="/users/:id/messages/new" component={requireAuth(MessageForm)} />
-							<Route path="/todos/new" component={requireAuth((props) => <TodoForm {...props} />)} />
-							{/* <TechSections /> */}
+							{/* <Route path="/todos/new" component={requireAuth((props) => <TodoForm {...props} />)} /> */}
 						</Switch>
 					</div>
 				</Router>

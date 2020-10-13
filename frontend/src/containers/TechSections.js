@@ -6,23 +6,17 @@ import { Link, Route } from 'react-router-dom';
 import TechSection from '../components/tech/TechSection';
 
 import TechSectionForm from '../components/tech/TechSectionForm';
-import { addTechSection, removeTechSection, getTechSections, addGuruLink, removeGuruLink } from '../store/actions';
-
-// import * as apiCalls from '../apiTech';
+import { removeTechSection, fetchTechSections } from '../store/actions';
+import requireAuth from '../hocs/requireAuth';
 
 class TechSections extends Component {
 	constructor(props) {
 		super(props);
-		this.handleAddTechSection = this.handleAddTechSection.bind(this);
 	}
 
 	componentDidMount() {
 		// debugger;
-		this.props.getTechSections();
-	}
-
-	handleAddTechSection(val) {
-		this.props.addTechSection(val);
+		this.props.fetchTechSections();
 	}
 
 	removeTechSection(id) {
@@ -31,14 +25,6 @@ class TechSections extends Component {
 
 	updateTechSection(id) {
 		console.log(id);
-	}
-
-	handleAddGuruLink(techId, title, url, comment) {
-		this.props.addGuruLink(techId, title, url, comment);
-	}
-
-	handleRemoveGuruLink(techId, linkId) {
-		this.props.removeGuruLink(techId, linkId);
 	}
 
 	render() {
@@ -51,8 +37,6 @@ class TechSections extends Component {
 				{...techSection}
 				onDelete={this.removeTechSection.bind(this, techSection._id)}
 				onUpdate={this.updateTechSection.bind(this, techSection)}
-				addGuruLink={this.handleAddGuruLink.bind(this, techSection._id)}
-				removeGuruLink={this.handleRemoveGuruLink.bind(this, techSection._id)}
 			/>
 		));
 		return (
@@ -61,29 +45,23 @@ class TechSections extends Component {
 					<Link to="/">Home</Link>
 				</p>
 				<h1>TechSections</h1>
+				<Route path="/techinfo/new" component={requireAuth((props) => <TechSectionForm {...props} />)} />
 				<Link to="/techinfo/new">Add a Tech Section</Link>
-				<Route
-					path="/techinfo/new"
-					component={(props) => <TechSectionForm {...props} addTechSection={this.handleAddTechSection} />}
-				/>
-				{/* <TechSectionForm addTechSection={this.handleAddTechSection} /> */}
+				{/* <Route path="/techinfo" component={() => <div>{techSections}</div>} /> */}
 				<ul>{techSections}</ul>
 			</div>
 		);
 	}
 }
 
-function mapStateToProps(reduxState) {
+function mapStateToProps(state) {
 	// debugger;
 	return {
-		techState: reduxState.tech
+		techState: state.tech
 	};
 }
 
 export default connect(mapStateToProps, {
-	addTechSection,
 	removeTechSection,
-	getTechSections,
-	addGuruLink,
-	removeGuruLink
+	fetchTechSections
 })(TechSections);
