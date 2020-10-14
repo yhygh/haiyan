@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
-import { connect } from 'react-redux';
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
 import Home from '../components/Home';
@@ -11,8 +9,6 @@ import { authUser, removeError } from '../store/actions';
 import requireAuth from '../hocs/requireAuth';
 
 import MessageForm from './MessageForm';
-// import TodoForm from '../components/todo/TodoForm';
-
 import TechSections from './TechSections';
 import TodoList from './TodoList';
 import Suggestion from '../components/Suggestion';
@@ -20,7 +16,6 @@ import Suggestion from '../components/Suggestion';
 class App extends Component {
 	render() {
 		const { authUser, errors, removeError, currentUser } = this.props;
-		console.log(currentUser);
 		return (
 			<div className="App">
 				<Router>
@@ -35,20 +30,23 @@ class App extends Component {
 								exact
 								render={(props) => <Suggestion currentUser={currentUser} {...props} />}
 							/>
-							{/* <Route
-								path="/todos"
-								component={requireAuth((props) => (
-									<TodoList currentUser={currentUser} errors={errors} {...props} />
-								))}
-							/> */}
+
 							<Route
 								path="/todos"
-								component={(props) => <TodoList currentUser={currentUser} {...props} />}
-								// component={(props) => <TodoList currentUser={currentUser} {...props} />}
+								render={(props) => {
+									console.log(`inside Route, currentUser ...`);
+									console.log(currentUser);
+									if (!currentUser.isAuthenticated || !currentUser.user.isAdmin) {
+										return <div>Please Log in as the Administrator</div>;
+									} else {
+										return <TodoList {...props} />;
+									}
+								}}
 							/>
+
 							<Route
 								path="/techinfo"
-								render={(props) => <TechSections currentUser={currentUser} {...props} />}
+								render={(props) => <TechSections {...props} />}
 								// component={TechSections}
 							/>
 							<Route
@@ -81,7 +79,6 @@ class App extends Component {
 								)}
 							/>
 							<Route path="/users/:id/messages/new" component={requireAuth(MessageForm)} />
-							{/* <Route path="/todos/new" component={requireAuth((props) => <TodoForm {...props} />)} /> */}
 						</Switch>
 					</div>
 				</Router>

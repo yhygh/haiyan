@@ -31,10 +31,12 @@ class TechSections extends Component {
 		// debugger;
 		console.log(this.props);
 		console.log(`props above techSections ...`);
+		const currentUser = this.props.currentUser;
 		const techSections = this.props.techState.techSections.map((techSection) => (
 			<TechSection
 				key={techSection._id}
 				{...techSection}
+				currentUser={currentUser}
 				onDelete={this.removeTechSection.bind(this, techSection._id)}
 				onUpdate={this.updateTechSection.bind(this, techSection)}
 			/>
@@ -46,7 +48,9 @@ class TechSections extends Component {
 				</p>
 				<h1>TechSections</h1>
 				<Route path="/techinfo/new" component={requireAuth((props) => <TechSectionForm {...props} />)} />
-				<Link to="/techinfo/new">Add a Tech Section</Link>
+				{currentUser.isAuthenticated && currentUser.user.isAdmin ? (
+					<Link to="/techinfo/new">Add a Tech Section</Link>
+				) : null}
 				{/* <Route path="/techinfo" component={() => <div>{techSections}</div>} /> */}
 				<ul>{techSections}</ul>
 			</div>
@@ -57,7 +61,8 @@ class TechSections extends Component {
 function mapStateToProps(state) {
 	// debugger;
 	return {
-		techState: state.tech
+		techState: state.tech,
+		currentUser: state.currentUser
 	};
 }
 

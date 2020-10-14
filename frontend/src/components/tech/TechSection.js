@@ -7,7 +7,7 @@ import requireAuth from '../../hocs/requireAuth';
 
 import { addGuruLink, removeGuruLink } from '../../store/actions';
 
-import ErrorBoundary from '../ErrorBoundary';
+// import ErrorBoundary from '../ErrorBoundary';
 
 class TechSection extends Component {
 	constructor(props) {
@@ -18,16 +18,15 @@ class TechSection extends Component {
 	}
 
 	render() {
+		const currentUser = this.props.currentUser;
 		const newGurulinkPath = `/techinfo/${this.props._id}/gurulink/new`;
 		return (
 			<div style={{ background: '#e3aa91' }}>
 				<p>{this.props.name}</p>
-				<Link to={newGurulinkPath}>Add a new Link</Link>
 
-				{/* <Route
-					path={newGurulinkPath}
-					component={requireAuth((props) => <GuruLinkForm {...props} addGuruLink={this.addGuruLink} />)}
-				/> */}
+				{currentUser.isAuthenticated && currentUser.user.isAdmin ? (
+					<Link to={newGurulinkPath}>Add a new Link</Link>
+				) : null}
 
 				<Route
 					path={newGurulinkPath}
@@ -40,19 +39,23 @@ class TechSection extends Component {
 							<a href={link.url}>{link.title}</a>
 						</div>
 						<div>{link.comment}</div>
-						<div>
-							<span>
-								<button onClick={this.removeGuruLink.bind(this, link._id)}>Delete Link</button>
-							</span>
-							<span>
-								<button>Update Link</button>
-							</span>
-						</div>
+
+						{currentUser.isAuthenticated && currentUser.user.isAdmin ? (
+							<div>
+								<span>
+									<button onClick={this.removeGuruLink.bind(this, link._id)}>Delete Link</button>
+								</span>
+							</div>
+						) : null}
 					</div>
 				))}
-				<div>
-					<button onClick={this.props.onDelete}> Delete This Section </button>
-				</div>
+
+				{currentUser.isAuthenticated && currentUser.user.isAdmin ? (
+					<div>
+						<button onClick={this.props.onDelete}> Delete This Section </button>
+					</div>
+				) : null}
+
 				<p>------------------------------</p>
 			</div>
 		);

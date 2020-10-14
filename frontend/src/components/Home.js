@@ -2,21 +2,37 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = ({ currentUser }) => (
-	<div>
-		<h1>Welcome to Haiyan's Backyard</h1>
-		{!currentUser.isAuthenticated ? (
-			<div className="home-hero">
-				<h1>Best Teachers</h1>
-				<h4>My favorite teachers</h4>
-				<Link to="/signup" className="btn btn-primary">
-					Sign Up Here
-				</Link>
+const Home = () => {
+	const skills = [
+		'Node',
+		'Express',
+		'MongoDB',
+		'React',
+		'React-redux',
+		'Responsive Design',
+		'JavaScript',
+		'HTML',
+		'CSS',
+		'JSON'
+	];
+
+	return (
+		<div>
+			<h1>Welcome to Haiyan's Techland</h1>
+			<div>
+				This is a <strong>full stack website</strong> that is designed for my personal usage. Therefore, some
+				pages are not visible to others. However, I'm sharing with you some of the fabulous
+				<Link to="/techinfo">web development resources</Link> including Youtube videos, Udemy courses, Bloggers,
+				and Articles I've found in 2020. Swimming in the google ocean isn't really fun, because it takes a lot
+				of time to sort out what's worth reading and learning and who is best at explaning technologies.
+				Hopefully, the resources I have found are useful for you! I also welcome you to share the best web
+				development resources you have found out under the
+				<Link to="/suggestion">Your Suggestions</Link> area.
+				<div>The skills that I used to build this website are as follows:</div>
+				<ul>{skills.map((skill, i) => <li key={i}>{skill}</li>)}</ul>
 			</div>
-		) : (
-			<div>Something to be filled here</div>
-		)}
-	</div>
-);
+		</div>
+	);
+};
 
 export default Home;

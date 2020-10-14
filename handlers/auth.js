@@ -7,10 +7,7 @@ exports.signin = async function(req, res, next) {
 		let user = await db.User.findOne({
 			email: req.body.email
 		});
-		console.log(`server side, inside signin, user: ${user}`);
-		// let { id, username, profileImageUrl } = user;
 		let { id, username } = user;
-		console.log(`server side, inside signin, after destructure, id: ${id}`);
 
 		let isMatch = await user.comparePassword(req.body.password);
 		if (isMatch) {
@@ -18,7 +15,6 @@ exports.signin = async function(req, res, next) {
 				{
 					id,
 					username
-					// profileImageUrl
 				},
 				process.env.SECRET_KEY
 			);
@@ -29,7 +25,6 @@ exports.signin = async function(req, res, next) {
 			return res.status(200).json({
 				id,
 				username,
-				// profileImageUrl,
 				token,
 				isAdmin: isAdmin
 			});
@@ -61,14 +56,12 @@ exports.signup = async function(req, res, next) {
 			{
 				id,
 				username
-				// profileImageUrl
 			},
 			process.env.SECRET_KEY
 		);
 		return res.status(200).json({
 			id,
 			username,
-			// profileImageUrl,
 			token
 		});
 	} catch (err) {

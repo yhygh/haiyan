@@ -11,11 +11,10 @@ class MessageList extends Component {
 	render() {
 		const { messages, removeMessage, currentUser } = this.props;
 
-		// debugger;
 		let messageList = messages.map((m) => (
 			<MessageItem
 				key={m._id}
-				date={m.createAt}
+				date={m.createdAt}
 				text={m.text}
 				username={m.user.username}
 				removeMessage={removeMessage.bind(this, m.user._id, m._id)}

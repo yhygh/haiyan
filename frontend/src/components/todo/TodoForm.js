@@ -42,11 +42,12 @@ class TodoForm extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		currentUser: state.currentUser
-	};
-}
+// function mapStateToProps(state) {
+// 	return {
+// 		currentUser: state.currentUser
+// 	};
+// }
 
-export default connect(mapStateToProps, { addTodo })(TodoForm);
+export default connect(null, { addTodo })(TodoForm);
+// export default connect(mapStateToProps, { addTodo })(TodoForm);
 // export default TodoForm;

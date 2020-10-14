@@ -15,14 +15,11 @@ const MessageItem = ({ date, text, username, removeMessage, isCorrectUser }) => 
 					</Moment>
 				</span>
 				<p>{text}</p>
-				{/* {isCorrectUser && (
+				{isCorrectUser && (
 					<a className="btn btn-danger" onClick={removeMessage}>
 						Delete
 					</a>
-				)} */}
-				<a className="btn btn-danger" onClick={removeMessage}>
-					Delete
-				</a>
+				)}
 			</div>
 		</li>
 	</div>

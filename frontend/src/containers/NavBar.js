@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions';
-import Logo from '../images/warbler-logo.png';
+import Logo from '../images/shira-logo.png';
 
 class Navbar extends Component {
 	logout = (e) => {
@@ -24,14 +24,14 @@ class Navbar extends Component {
 								<li className="nav-item nav-link active">
 									<Link to="/">Home</Link>
 								</li>
-								<li className="nav-item nav-link active">
-									<Link to="/todos">My todos!</Link>
-								</li>
 								<li className="nav-item nav-link">
 									<Link to="/techinfo">My Tech Warehouse</Link>
 								</li>
 								<li className="nav-item nav-link">
-									<Link to="/suggestion">Other Suggestions</Link>
+									<Link to="/suggestion">Your Suggestions</Link>
+								</li>
+								<li className="nav-item nav-link active">
+									<Link to="/todos">My Todos</Link>
 								</li>
 							</ul>
 						</div>
@@ -40,11 +40,9 @@ class Navbar extends Component {
 					{this.props.currentUser.isAuthenticated ? (
 						<ul className="nav-navbar-nav navbar-right">
 							<li>
-								<Link to={`/users/${this.props.currentUser.user.id}/messages/new`}>New message</Link>
-							</li>
-							<li>
 								<a onClick={this.logout}>Log out</a>
 							</li>
+							<li>{this.props.currentUser.user.username}</li>
 						</ul>
 					) : (
 						<ul className="nav navbar-nav navbar-right">
