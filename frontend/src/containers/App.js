@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
+import Footer from '../components/Footer';
 import Home from '../components/Home';
 import AuthForm from '../components/AuthForm';
 import { authUser, removeError } from '../store/actions';
@@ -17,9 +18,9 @@ class App extends Component {
 	render() {
 		const { authUser, errors, removeError, currentUser } = this.props;
 		return (
-			<div className="App">
+			<Fragment>
 				<Router>
-					<div className="onboarding">
+					<div className="header">
 						<NavBar />
 					</div>
 					<div className="container">
@@ -30,25 +31,24 @@ class App extends Component {
 								exact
 								render={(props) => <Suggestion currentUser={currentUser} {...props} />}
 							/>
-
 							<Route
 								path="/todos"
 								render={(props) => {
-									console.log(`inside Route, currentUser ...`);
-									console.log(currentUser);
 									if (!currentUser.isAuthenticated || !currentUser.user.isAdmin) {
-										return <div>Please Log in as the Administrator</div>;
+										return (
+											<div className="haiyan-bg">
+												<Link to="/signin" className="btn btn-lg">
+													Priviledged User Log In
+												</Link>
+											</div>
+										);
 									} else {
 										return <TodoList {...props} />;
 									}
 								}}
 							/>
 
-							<Route
-								path="/techinfo"
-								render={(props) => <TechSections {...props} />}
-								// component={TechSections}
-							/>
+							<Route path="/techinfo" render={(props) => <TechSections {...props} />} />
 							<Route
 								exact
 								path="/signin"
@@ -58,7 +58,7 @@ class App extends Component {
 										errors={errors}
 										onAuth={authUser}
 										buttonText="Log in"
-										heading="You are not authorized to view or edit this page!"
+										heading=""
 										{...props}
 									/>
 								)}
@@ -73,7 +73,7 @@ class App extends Component {
 										onAuth={authUser}
 										signUp
 										buttonText="Sign me up!"
-										heading="Join Haiyan Friends Circle Today."
+										heading="Join Haiyan Friends Circle Today"
 										{...props}
 									/>
 								)}
@@ -82,7 +82,10 @@ class App extends Component {
 						</Switch>
 					</div>
 				</Router>
-			</div>
+				<div className="footer-container">
+					<Footer />
+				</div>
+			</Fragment>
 		);
 	}
 }

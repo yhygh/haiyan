@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import errorsReducer from '../store/reducers/errorsReducer';
 
 class AuthForm extends Component {
 	constructor(props) {
@@ -23,7 +22,6 @@ class AuthForm extends Component {
 		this.props
 			.onAuth(authType, this.state)
 			.then(() => {
-				console.log('logged in');
 				// this.props.history.push('/');
 				this.props.history.goBack();
 			})
@@ -33,7 +31,7 @@ class AuthForm extends Component {
 	};
 
 	render() {
-		const { email, username, password } = this.state;
+		const { email, username } = this.state;
 		const { heading, buttonText, signUp, errors, history, removeError } = this.props;
 
 		// If there's a change in the router, we'll call removeError()
@@ -44,7 +42,7 @@ class AuthForm extends Component {
 		return (
 			<div>
 				<div className="row justify-content-md-center text-center">
-					<div className="col-md-6">
+					<div className="col-md-8">
 						<form onSubmit={this.handleSubmit}>
 							<h2>{heading}</h2>
 							{errors.message && <div className="alert alert-danger">{errors.message}</div>}

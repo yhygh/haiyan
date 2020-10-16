@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 import { removeTodo, fetchTodos } from '../store/actions';
 
 class TodoList extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		// debugger;
 		this.props.fetchTodos();

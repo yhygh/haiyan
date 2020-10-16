@@ -5,15 +5,15 @@ import MessageTimeline from './MessageTimeline';
 const Suggestion = ({ currentUser }) => (
 	<div>
 		{!currentUser.isAuthenticated ? (
-			<div className="home-hero">
-				<Link to="/signin" className="btn btn-primary">
+			<div className="haiyan-bg">
+				<Link to="/signin" className="btn btn-lg">
 					Please Log In
 				</Link>
 			</div>
 		) : (
-			<div>
-				<div className="nav-navbar-nav navbar-right">
-					<Link to={`/users/${currentUser.user.id}/messages/new`}>New message</Link>
+			<div className="message-box">
+				<div className="message-create">
+					<Link to={`/users/${currentUser.user.id}/messages/new`}>Leave New Message</Link>
 				</div>
 				<MessageTimeline />
 			</div>

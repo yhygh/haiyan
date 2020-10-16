@@ -11,15 +11,16 @@ exports.signin = async function(req, res, next) {
 
 		let isMatch = await user.comparePassword(req.body.password);
 		if (isMatch) {
+			const isAdmin = username === process.env.ADMIN;
+
 			let token = jwt.sign(
 				{
 					id,
-					username
+					username,
+					isAdmin
 				},
 				process.env.SECRET_KEY
 			);
-
-			const isAdmin = username === process.env.ADMIN;
 
 			// only return isAdmin for signin, not for signup
 			return res.status(200).json({

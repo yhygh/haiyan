@@ -20,19 +20,22 @@ class MessageForm extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.handleNewMessage}>
-				{this.props.errors.message && <div className="alert alert-danger">{this.props.errors}</div>}
-				{/* <input */}
-				<textarea
-					type="text"
-					className="form-control"
-					value={this.state.message}
-					onChange={(e) => this.setState({ message: e.target.value })}
-				/>
-				<button type="submit" className="btn btn-success pull-right">
-					Please leave your suggestions!
-				</button>
-			</form>
+			<div className="row justify-content-md-center text-center">
+				<div className="col-md-8 message-form-wrapper">
+					<form onSubmit={this.handleNewMessage}>
+						{this.props.errors.message && <div className="alert alert-danger">{this.props.errors}</div>}
+						<textarea
+							type="text"
+							className="form-control"
+							value={this.state.message}
+							onChange={(e) => this.setState({ message: e.target.value })}
+						/>
+						<button type="submit" className="btn btn-success pull-right">
+							Please leave your suggestions!
+						</button>
+					</form>
+				</div>
+			</div>
 		);
 	}
 }

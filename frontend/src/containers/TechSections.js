@@ -10,10 +10,6 @@ import { removeTechSection, fetchTechSections } from '../store/actions';
 import requireAuth from '../hocs/requireAuth';
 
 class TechSections extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		// debugger;
 		this.props.fetchTechSections();
@@ -23,14 +19,8 @@ class TechSections extends Component {
 		this.props.removeTechSection(id);
 	}
 
-	updateTechSection(id) {
-		console.log(id);
-	}
-
 	render() {
 		// debugger;
-		console.log(this.props);
-		console.log(`props above techSections ...`);
 		const currentUser = this.props.currentUser;
 		const techSections = this.props.techState.techSections.map((techSection) => (
 			<TechSection
@@ -38,21 +28,17 @@ class TechSections extends Component {
 				{...techSection}
 				currentUser={currentUser}
 				onDelete={this.removeTechSection.bind(this, techSection._id)}
-				onUpdate={this.updateTechSection.bind(this, techSection)}
 			/>
 		));
 		return (
 			<div>
-				<p>
-					<Link to="/">Home</Link>
-				</p>
-				<h1>TechSections</h1>
+				<h2>Tech Sections</h2>
 				<Route path="/techinfo/new" component={requireAuth((props) => <TechSectionForm {...props} />)} />
 				{currentUser.isAuthenticated && currentUser.user.isAdmin ? (
 					<Link to="/techinfo/new">Add a Tech Section</Link>
 				) : null}
 				{/* <Route path="/techinfo" component={() => <div>{techSections}</div>} /> */}
-				<ul>{techSections}</ul>
+				<div className="main-grid">{techSections}</div>
 			</div>
 		);
 	}

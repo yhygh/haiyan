@@ -21,3 +21,7 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 // for messages list
 export const LOAD_MESSAGES = 'LOAD_MESSAGES';
 export const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
+
+// for sandwich bar on small screens
+export const CLOSE_SIDEDRAWER = 'CLOSE_SIDEDRAWER';
+export const TOGGLE_SIDEDRAWER = 'TOGGLE_SIDEDRAWER';

@@ -17,7 +17,6 @@ export const fetchTechSections = () => {
 	return (dispatch) => {
 		return apiCall('get', '/api/ts')
 			.then((res) => {
-				console.log(`fetch techSections response: ${res}`);
 				dispatch(loadTechSections(res));
 			})
 			.catch((err) => {

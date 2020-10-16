@@ -3,7 +3,6 @@ import GuruLinkForm from './GuruLinkForm';
 import { Link, Route } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import requireAuth from '../../hocs/requireAuth';
 
 import { addGuruLink, removeGuruLink } from '../../store/actions';
 
@@ -21,11 +20,14 @@ class TechSection extends Component {
 		const currentUser = this.props.currentUser;
 		const newGurulinkPath = `/techinfo/${this.props._id}/gurulink/new`;
 		return (
-			<div style={{ background: '#e3aa91' }}>
-				<p>{this.props.name}</p>
+			<div className="main-grid-item">
+				<div className="category-grid-item category-grid-item-title">{this.props.name}</div>
 
 				{currentUser.isAuthenticated && currentUser.user.isAdmin ? (
-					<Link to={newGurulinkPath}>Add a new Link</Link>
+					<div>
+						<Link to={newGurulinkPath}>Add a new Link</Link>
+						<button onClick={this.props.onDelete}> Delete This Section </button>
+					</div>
 				) : null}
 
 				<Route
@@ -34,7 +36,7 @@ class TechSection extends Component {
 				/>
 
 				{this.props.links.map((link) => (
-					<div key={link._id}>
+					<div className="category-grid-item" key={link._id}>
 						<div>
 							<a href={link.url}>{link.title}</a>
 						</div>
@@ -49,14 +51,6 @@ class TechSection extends Component {
 						) : null}
 					</div>
 				))}
-
-				{currentUser.isAuthenticated && currentUser.user.isAdmin ? (
-					<div>
-						<button onClick={this.props.onDelete}> Delete This Section </button>
-					</div>
-				) : null}
-
-				<p>------------------------------</p>
 			</div>
 		);
 	}
