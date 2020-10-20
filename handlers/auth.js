@@ -1,3 +1,6 @@
+const validator = require('validator/lib/isEmail');
+const sanitizeHtml = require('sanitize-html');
+
 const db = require('../models');
 const jwt = require('jsonwebtoken');
 
@@ -45,14 +48,44 @@ exports.signin = async function(req, res, next) {
 	}
 };
 
+// TODO: move this to a common file
+// sanitize attacks such as <script>
+sanitizeInput = function(userInput) {
+	const sanitizedInput = sanitizeHtml(userInput, {
+		allowedTags: [],
+		allowedAttributes: {}
+	});
+	if (sanitizedInput !== userInput) {
+		throw new Error('HTML tags not allowed!')
+	} 
+}
+
+
 exports.signup = async function(req, res, next) {
 	try {
+		sanitizeInput(req.body.email);
+		if (!validator(req.body.email)) {
+			throw new Error('Invalid Email Address');
+		}
+
+		sanitizeInput(req.body.username);
+		if (req.body.username.length > 10) {
+			throw new Error('username must be less than 10 characters');
+		} else if (req.body.username.length < 4) {
+			throw new Error('username must be longer than 4 characters');
+		}
+
+		let pass = req.body.password;
+		sanitizeInput(pass);
+		if (pass.length < 4 || pass.length > 10) {
+			throw new Error('password must between 4 to 10 characters');
+		}
+
 		// create a user
+		let user = await db.User.create(req.body);
+		let { id, username } = user;
 		// create a token (signing a token)
 		// process.env.SECRET_KEY
-		let user = await db.User.create(req.body);
-		// let { id, username, profileImageUrl } = user;
-		let { id, username } = user;
 		let token = jwt.sign(
 			{
 				id,
@@ -75,6 +108,7 @@ exports.signup = async function(req, res, next) {
 		if (err.code === 11000) {
 			err.message = 'Sorry, that username and/or email is taken';
 		}
+
 		return next({
 			status: 400,
 			message: err.message

@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 import Footer from '../components/Footer';
 import Home from '../components/Home';
 import AuthForm from '../components/AuthForm';
-import { authUser, removeError } from '../store/actions';
+import { authUser, removeError, logout } from '../store/actions';
 import requireAuth from '../hocs/requireAuth';
 
 import MessageForm from './MessageForm';
@@ -16,7 +16,7 @@ import Suggestion from '../components/Suggestion';
 
 class App extends Component {
 	render() {
-		const { authUser, errors, removeError, currentUser } = this.props;
+		const { authUser, errors, removeError, logout, currentUser } = this.props;
 		return (
 			<Fragment>
 				<Router>
@@ -55,10 +55,12 @@ class App extends Component {
 								render={(props) => (
 									<AuthForm
 										removeError={removeError}
+										logout={logout}
 										errors={errors}
 										onAuth={authUser}
 										buttonText="Log in"
 										heading=""
+										currentUser={currentUser}
 										{...props}
 									/>
 								)}
@@ -97,4 +99,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { authUser, removeError })(App);
+export default connect(mapStateToProps, { authUser, removeError, logout })(App);

@@ -6,8 +6,8 @@ const Suggestion = ({ currentUser }) => (
 	<div>
 		{!currentUser.isAuthenticated ? (
 			<div className="haiyan-bg">
-				<Link to="/signin" className="btn btn-lg">
-					Please Log In
+				<Link to="/signup" className="btn btn-lg">
+					Sign Up
 				</Link>
 			</div>
 		) : (

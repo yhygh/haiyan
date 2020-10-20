@@ -6,7 +6,6 @@ import DrawerToggleButton from '../common/DrawerToggleButton';
 import SideDrawer from '../common/SideDrawer';
 import Backdrop from '../common/Backdrop';
 
-// import { logout } from '../store/actions';
 import { logout, closeSidedrawer, toggleSidedrawer } from '../store/actions';
 import Logo from '../images/shira-logo.png';
 

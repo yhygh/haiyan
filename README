@@ -1,3 +1,6 @@
+// TO RUN
+nodemon index.js
+
 
 One to many relations between each tech section and guru links.
 
@@ -16,6 +19,12 @@ https://zellwk.com/blog/install-mongodb/
  http POST localhost:4000/api/auth/signup password=matt username=matt email=matt@matt.com
  http POST localhost:4000/api/auth/signin password=matt email=matt@matt.com
 
- http POST localhost:4000/api/users/5f7797ac9dd02f8981ddc662/messages "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNzc5N2FjOWRkMDJmODk4MWRkYzY2MiIsInVzZXJuYW1lIjoibWF0dCIsImlhdCI6MTYwMTY3MzE3NX0.jFu6kUSCfH9Y_6YStugFGFzy2IoNIA0vdkNsm4eGNK4" text="Hello everyone"
- http POST localhost:4000/api/users/5f7797ac9dd02f8981ddc662/messages "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmNzc5N2FjOWRkMDJmODk4MWRkYzY2MiIsInVzZXJuYW1lIjoibWF0dCIsImlhdCI6MTYwMTY3MzE3NX0.jFu6kUSCfH9Y_6YStugFGFzy2IoNIA0vdkNsm4eGNK4" text="Goodbye"
+ http POST localhost:4000/api/users/5f7797ac9dd02f8981ddc662/messages "Authorization:Bearer token" text="Hello everyone"
+ http POST localhost:4000/api/users/5f7797ac9dd02f8981ddc662/messages "Authorization:Bearer token" text="Goodbye"
+
+
+TODO:
+
+1. Fix the routing issue, after the user logs in, it should go back to the previous page.
+   (history.goBack has a problem right now. scenario: user clicks Sign Up first, then Sign In) 
 

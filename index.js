@@ -11,6 +11,9 @@ const express = require('express'),
 	gurulinkRoutes = require('./routes/gurulinks'),
 	authRoutes = require('./routes/auth'),
 	messagesRoutes = require('./routes/messages'),
+	mongoSanitize = require('express-mongo-sanitize'),
+	// helmet = require('helmet');
+
 	{ loginRequired, ensureCorrectUser, ensureAdmin } = require('./middleware/auth'),
 	db = require('./models');
 
@@ -18,6 +21,10 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json()); // building api
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(mongoSanitize());
+
+// TODO: fix the options for helmet
+// app.use(helmet());
 
 app.get('/', function(req, res) {
 	res.send({ message: 'Hi from root express' });
