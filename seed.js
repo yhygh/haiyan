@@ -1,8 +1,14 @@
 // TO import or export from mongodb, useful for backup
 // Currently, import data from a json file into a mongodb
+require('dotenv').config();
+
+const dbUrl = process.env.DB_URL;
+
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/haiyandb-api', { useNewUrlParser: true,  useCreateIndex: true, useUnifiedTopology: true });
+//mongoose.connect(dbUrl, { useNewUrlParser: true,  useCreateIndex: true, useUnifiedTopology: true });
+
 var data = require('./techData.json');
 
 mongoose.Promise = Promise;
@@ -13,7 +19,7 @@ const Message = require('./models/message');
 const Todo = require('./models/todo'); 
 const User = require('./models/user'); 
 const { options } = require('./routes/auth');
-const { exists } = require('./models/todo');
+const { exists, db } = require('./models/todo');
 
 function seedDB() {
   Gurulink.remove()

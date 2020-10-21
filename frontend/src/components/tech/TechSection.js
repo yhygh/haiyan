@@ -38,7 +38,7 @@ class TechSection extends Component {
 				{this.props.links.map((link) => (
 					<div className="category-grid-item" key={link._id}>
 						<div>
-							<a href={link.url}>{link.title}</a>
+							<a href={link.url} target="_blank" rel="noreferrer noopener">{link.title}</a>
 						</div>
 						<div>{link.comment}</div>
 

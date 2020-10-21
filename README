@@ -1,6 +1,13 @@
 // TO RUN
 nodemon index.js
 
+// or 
+npm start
+
+
+// Some notes:
+
+Model design:
 
 One to many relations between each tech section and guru links.
 
@@ -28,3 +35,6 @@ TODO:
 1. Fix the routing issue, after the user logs in, it should go back to the previous page.
    (history.goBack has a problem right now. scenario: user clicks Sign Up first, then Sign In) 
 
+2. Complete the seed.js file, export data from mongo, close db
+
+3. Style tech sections and todos pages for the admin login 

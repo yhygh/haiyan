@@ -14,7 +14,9 @@ const Home = () => {
 		'JavaScript',
 		'HTML',
 		'CSS',
-		'JSON'
+		'JSON',
+		'Letsencrypt',
+		'Bootstrap'
 	];
 
 	return (
@@ -25,8 +27,10 @@ const Home = () => {
 			</div>
 			<div className="intro">
 				<p>
-					This is a <strong>full stack website</strong> that is designed for my personal usage. I spent most of 
-					my time in 2020 brushing up my web development skills. I found a ton of fantastic 
+					This is a responsive <strong>full stack website</strong> that is designed for my personal usage. 
+					From creating a favicon image, to designing the look and feel, to architecing the backend 
+					and frontend, to implementing a sandwich bar for cell phone usage, to generating a SSL certificate and deployment, I did everything from scratch. 
+					I spent most of my time in 2020 brushing up my web development skills and found a ton of fantastic 
 					<Link to="/techinfo"> web development resources</Link> including Youtube videos, Udemy courses,
 					bloggers, and articles. </p>
 				<p>	I started by bookmarking these resources and then quickly realized that 

@@ -1,3 +1,6 @@
+// necessary for production
+const path = require('path');
+
 require('dotenv').config();
 const express = require('express'),
 	app = express(),
@@ -26,6 +29,9 @@ app.use(mongoSanitize());
 // TODO: fix the options for helmet
 // app.use(helmet());
 
+// necessary for production
+// app.use(express.static(path.join(__dirname, 'frontend/build')));
+
 app.get('/', function(req, res) {
 	res.send({ message: 'Hi from root express' });
 });
@@ -52,9 +58,8 @@ app.get('/api/messages', loginRequired, async function(req, res, next) {
 app.use(function(req, res, next) {
 	// next allows us to move to the next piece of middleware
 	// important for error handling so that we can bubble up our error
-	let err = new Error('Not Found www xyz');
+	let err = new Error('Not Found!');
 	err.status = 404;
-	console.log(`middleware before server errorHandler `);
 	console.log(err);
 	next(err);
 });
