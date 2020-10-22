@@ -249,7 +249,6 @@ textarea.form-control {
 
 /* sidedrawer */
 .side-drawer {
-	height: 70vmin;
 	background: linear-gradient(to bottom, #6398bb, #694f16);
 	box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
 	position: fixed;
