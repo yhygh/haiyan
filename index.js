@@ -30,7 +30,7 @@ app.use(mongoSanitize());
 // app.use(helmet());
 
 // necessary for production
-// app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 app.get('/', function(req, res) {
 	res.send({ message: 'Hi from root express' });
