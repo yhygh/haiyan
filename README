@@ -1,9 +1,12 @@
+Note: need to run both front end and backend, to run front end, go to the frontend directory and then start
+
+// backend
+
 // TO RUN
 nodemon index.js
 
 // or 
 npm start
-
 
 // Some notes:
 
