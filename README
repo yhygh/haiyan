@@ -41,3 +41,53 @@ TODO:
 2. Complete the seed.js file, export data from mongo, close db
 
 3. Style tech sections and todos pages for the admin login 
+
+
+
+https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896
+# set up digital ocean droplet
+  # install Node/NPM
+  curl -sL https://deb.nodesource.com/setup_19.x | sudo -E bash -
+  sudo apt install nodejs
+
+  # Clone the project from Github
+  git clone git@github.com:yhygh/haiyan.git
+
+  # on the droplet, generating a new SSH key, 
+  # following https://medium.com/featurepreneur/setting-up-ssh-key-with-github-for-ubuntu-cd8f2fabf25b
+  ssh-keygen -t rsa -b 4096 -C "yhyrvbd@gmail.com"
+
+# instal pm2 
+  npm install -g pm2
+  pm2 start index.js 
+
+  (other commands: pm2 status, pm2 restart index.js, pm2 stop, pm2 logs, pm2 flush)
+  pm2 startup ubuntu (we want the application goes back up if the server reboots)
+
+
+  ufw enable
+  ufw allow ssh
+  ufw allow http
+  ufw allow https
+
+# install nginx
+  sudo apt install nginx
+
+
+# somehow in frontend directory, npm start doesn't work on a droplet, so using serve
+ npm run build
+ npm install -g serve
+ serve -s build
+
+
+
+# certbot: 
+  snap install certbot --classic
+
+
+
+# check ubuntu version: 
+  cat /etc/lsb-release 
+
+
+# https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-22-04
