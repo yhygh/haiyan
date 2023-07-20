@@ -52,9 +52,8 @@ const Home = () => {
           <a href="https://dontimitateunderstand.com/p/understanding-react">
             Understanding React
           </a>
-          . There's no other person like him out there. He is a real engineer.
-          If any team can have just one engineer with Tony's spirit, that team
-          will thrive.
+          . There's no other person like him out there. It is my ultimate goal
+          to become an engineer like him and make my team thrive.
         </p>
 
         <p>
@@ -86,7 +85,7 @@ const Home = () => {
           to work on it. Here is the{" "}
           <a href="https://github.com/yhygh/haiyan">source code</a>. Looking
           back, I'd like to rewrite this whole website if I had time. :)
-          <strong>Thank you!</strong>
+          <strong> Thank you!</strong>
         </p>
 
         <div>
