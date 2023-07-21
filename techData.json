@@ -1,7 +1,7 @@
 [
   {
       "title": "Web Deployment",
-      "links": 
+      "links":
       [
           { "url": "https://www.youtube.com/watch?v=kR06NoSzAXY",
             "title": "Deploy Node SSL",
@@ -10,7 +10,7 @@
           { "url": "https://www.youtube.com/watch?v=oykl1Ih9pMg",
             "title": "Traversy SSL Lets Encrypt",
             "comment": "Awesome"
-          }, 
+          },
           { "url": "https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896",
             "title": "Traversy SSL Notes",
             "comment": "Fantastic"
@@ -18,57 +18,57 @@
           { "url": "https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04",
             "title": "Letsencrypt on Ubuntu",
             "comment": "Detailed"
-          }                                                                   
+          }
       ]
-  },  
+  },
   {
     "title": "Udemy Courses",
-    "links": 
+    "links":
       [
         {"url": "https://www.udemy.com/course/understand-javascript/learn/lecture/2237544?start=0#overview",
-          "title": "JavaScript: Understanding the Weird Parts",    
+          "title": "JavaScript: Understanding the Weird Parts",
           "comment": "The BEST EVER!"
-         },        
+         },
         {"url": "https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/3924130#overview",
-         "title": "Web Developer Bootcamp",    
+         "title": "Web Developer Bootcamp",
          "comment": "core of web development"
         },
         {"url": "https://github.com/nax3t/webdevbootcamp",
-         "title": "Yelpcamp Source",    
+         "title": "Yelpcamp Source",
          "comment": "For lookup"
-        },  
+        },
         {"url": "https://github.com/nax3t/background-slider",
-         "title": "Crossfade effect slider",    
+         "title": "Crossfade effect slider",
          "comment": "Study more"
         },
         {"url": "https://github.com/StephenGrider/ReactSSRCasts",
-         "title": "Server Side Rendering with React and Redux",    
+         "title": "Server Side Rendering with React and Redux",
          "comment": "In Progress"
-        }                                      
+        }
       ]
-},
-{
+  },
+  {
     "title": "Web Gurus",
-    "links": 
+    "links":
       [
         {"url": "https://www.youtube.com/channel/UCsFmLpSNJuFzpKqdEj5jeHw",
-          "title": "Tony Alicea",    
+          "title": "Tony Alicea",
           "comment": "THE BEST TEACHER EVER!"
-         },    
+         },
          {"url": "https://www.youtube.com/channel/UCrqAGUPPMOdo0jfQ6grikZw",
-          "title": "Colt Steele",    
+          "title": "Colt Steele",
           "comment": "Wonderful teacher!"
          },
          {"url": "https://www.youtube.com/user/TechGuyWeb",
-          "title": "Traversy Media",    
+          "title": "Traversy Media",
           "comment": "Wonderful teacher!"
-         },                           
-        {"url": "https://www.youtube.com/watch?v=kV6MJ9W4whM",
-         "title": "Using nodemon with NodeJS",    
-         "comment": "Steve Griffith"
-        }
+         },
+         {"url": "https://www.youtube.com/watch?v=kV6MJ9W4whM",
+          "title": "Using nodemon with NodeJS",
+          "comment": "Steve Griffith"
+         }
       ]
-},  
+  },
   {
       "title": "CSS",
       "links": [
@@ -78,58 +78,58 @@
            "comment": "slow, but offers a full picture"
           },
           {"url": "http://learnlayout.com/display.html",
-           "title": "Learn CSS Layout",     
+           "title": "Learn CSS Layout",
            "comment": "Short, clear, float"
           },
           {"url": "https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/",
-           "title": "Grid auto-fit vs auto-fill",     
+           "title": "Grid auto-fit vs auto-fill",
            "comment": "Short, clear"
           },
           {"url": "https://www.hongkiat.com/blog/css-grid-layout-minmax/",
-           "title": "Grid minmax()",     
+           "title": "Grid minmax()",
            "comment": "Short, clear"
           },
           {"url": "https://www.youtube.com/watch?v=fYq5PXgSsbE",
-           "title": "Learn flexbox in 15 minutes",     
+           "title": "Learn flexbox in 15 minutes",
            "comment": "Short, clear"
-          }                               
+          }
       ]
   },
   {
       "title": "JavaScript",
-      "links": 
+      "links":
         [
           {"url": "https://codeburst.io/master-javascript-prototypes-inheritance-d0a9a5a75c4e",
-           "title": "JS Prototype & Inheritance",    
+           "title": "JS Prototype & Inheritance",
            "comment": "core of JS"
           },
           {"url": "https://medium.com/@nickbalestra/javascripts-lexical-scope-hoisting-and-closures-without-mystery-c2324681d4be",
-           "title": "Scope, hoisting, closure",    
+           "title": "Scope, hoisting, closure",
            "comment": "A second core"
-          },  
+          },
           {"url": "https://medium.com/@florenceliang/javascript-event-delegation-and-event-target-vs-event-currenttarget-c9680c3a46d1",
-           "title": "Event target vs currentTarget",    
+           "title": "Event target vs currentTarget",
            "comment": "2 minutes"
-          }                          
+          }
         ]
   },
   {
       "title": "Performance Testing",
-      "links": 
+      "links":
         [
           {"url": "https://developers.google.com/speed/pagespeed/insights/",
-           "title": "PageSpeed Insights",    
+           "title": "PageSpeed Insights",
            "comment": "by Google"
           },
           {"url": "https://www.webpagetest.org/",
-           "title": "WebPageTest",    
+           "title": "WebPageTest",
            "comment": ""
-          }               
+          }
         ]
   },
   {
       "title": "Web",
-      "links": 
+      "links":
         [
           { "url": "https://www.youtube.com/watch?v=UMKS6su8HQc&list=PLyuRouwmQCjnr-rRrhbPrS4YQ0brDQ-14",
             "title": "Web server with Node JS",
@@ -138,16 +138,16 @@
           { "url": "https://machinesaredigging.com/2013/10/29/how-does-a-web-session-work/",
             "title": "Web session",
             "comment": "Good article"
-          }, 
+          },
           { "url": "https://symfonycasts.com/screencast/rest/put-versus-post",
             "title": "PUT versus POST",
             "comment": "Idempotent"
-          }                                                            
+          }
         ]
   },
   {
       "title": "WebPack",
-      "links": 
+      "links":
         [
           { "url": "https://www.youtube.com/watch?v=MpGLUVbqoYQ",
             "url2": "https://github.com/Colt/webpack-demo-app/commits/master",
@@ -157,109 +157,109 @@
           { "url": "https://www.robinwieruch.de/webpack-images",
             "title": "use Images with Webpack",
             "comment": "Short, clear"
-          }, 
+          },
           { "url": "https://www.sentinelstand.com/article/create-react-app-from-scratch-with-webpack-and-babel",
             "title": "React, webpack and babel",
             "comment": "Short, clear"
-          }                                                              
+          }
         ]
-  },    
+  },
   {
       "title": "React",
-      "links": 
-        [ 
+      "links":
+        [
           { "url": "https://www.youtube.com/watch?v=YAevAj6X6XU",
-            "title": "React Redux Tutorials",    
+            "title": "React Redux Tutorials",
             "comment": "Deep, clear series"
-          },  
+          },
           { "url": "https://www.youtube.com/watch?v=-4ni4uCUcvY",
-            "title": "useEffect react hook",    
+            "title": "useEffect react hook",
             "comment": "Short, clear"
           },
           { "url": "https://medium.com/javascript-in-plain-english/webpack-and-babel-setup-with-react-from-scratch-bef0fe2ae3e7",
-            "title": "Webpack Babel React Setup",    
+            "title": "Webpack Babel React Setup",
             "comment": "Short, clear"
-          }                                   
+          }
         ]
   },
   {
       "title": "React Router",
-      "links": 
-        [ 
+      "links":
+        [
           {"url": "https://reacttraining.com/react-router/web/guides/quick-start",
-           "title": "Nested Routing",    
+           "title": "Nested Routing",
            "comment": "Short, easy example"
           },
           { "url": "https://blog.logrocket.com/react-router-hooks-will-make-your-component-cleaner/",
-            "title": "React Router hooks",    
+            "title": "React Router hooks",
             "comment": "useParams, useRouteMatch, useHistory"
           },
           { "url": "https://www.youtube.com/watch?v=110dW3l5GQY",
-            "title": "React Router Tutorial",    
+            "title": "React Router Tutorial",
             "comment": "Clear, quick"
-          }                                   
+          }
         ]
-  },           
+  },
   {
       "title": "React Lifecycle",
-      "links": 
-        [ 
+      "links":
+        [
           {"url": "https://kevgathuku.me/2018/06/07/a-practical-use-case-for-reacts-componentdidupdate/",
-           "title": "componentDidUpdate use case",    
+           "title": "componentDidUpdate use case",
            "comment": "Great short case"
-          },            
+          },
           {"url": "https://www.youtube.com/watch?v=m_mtV4YaI8c",
-           "title": "React Component Lifecycle",    
+           "title": "React Component Lifecycle",
            "comment": "Awesome easy-to-understand examples"
           },
           {"url": "https://www.youtube.com/watch?v=DNYXgtZBRPE&t=37s",
-           "title": "React Error Boundary",    
+           "title": "React Error Boundary",
            "comment": "Super clear, short example"
-          }            
+          }
         ]
   },
   {
       "title": "React Videos",
-      "links": 
-        [ 
+      "links":
+        [
           {"url": "https://www.youtube.com/watch?v=t8JK5bVoVBw",
-           "title": "Dropdown menu component",    
+           "title": "Dropdown menu component",
            "comment": "Great example"
-          }           
+          }
         ]
-  },         
+  },
   {
       "title": "Network",
-      "links": 
-        [ 
+      "links":
+        [
           {"url": "https://www.digicert.com/ssl/",
-           "title": "SSL Certificate",    
+           "title": "SSL Certificate",
            "comment": "Best explanation"
-          },            
+          },
           {"url": "https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent",
-           "title": "Generating SSH key",    
+           "title": "Generating SSH key",
            "comment": ""
           }
         ]
-  },    
+  },
   {
       "title": "Algorithms",
-      "links": 
-        [ 
+      "links":
+        [
           {"url": "https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-410-split-array-largest-sum/",
-           "title": "Huahua's Tech Road",    
+           "title": "Huahua's Tech Road",
            "comment": "Efficient solutions"
           }
         ]
-  },   
+  },
   {
       "title": "Geography",
-      "links": 
-        [ 
+      "links":
+        [
           {"url": "https://www.weather.gov/documentation/services-web-api",
-           "title": "National Weather Service",    
+           "title": "National Weather Service",
            "comment": "JSON API"
           }
         ]
-  }              
+  }
 ]

@@ -91,3 +91,9 @@ https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896
 
 
 # https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-22-04
+
+# Install MongoDB Community Edition
+  https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+
+  Since MongoDB version 6, the mongo terminal command is no longer included as a way to start the MongoDB shell.
+  After we install the MongoDB Shell using the instructions below, we get the mongosh terminal command.
