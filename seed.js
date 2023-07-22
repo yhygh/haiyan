@@ -1,11 +1,11 @@
 // TO import or export from mongodb, useful for backup
 // Currently, import data from a json file into a mongodb
-require("dotenv").config();
+//require("dotenv").config();
 
-const dbUrl = process.env.DB_URL;
+//const dbUrl = process.env.DB_URL;
 
-var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/haiyandb-api");
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://127.0.0.1:27017/haiyandb-api");
 // mongoose.connect('mongodb://localhost/haiyandb-api', { useNewUrlParser: true,  useCreateIndex: true, useUnifiedTopology: true });
 //mongoose.connect(dbUrl, { useNewUrlParser: true,  useCreateIndex: true, useUnifiedTopology: true });
 
@@ -13,13 +13,14 @@ var data = require("./techData.json");
 
 mongoose.Promise = Promise;
 
+
 const Techsection = require("./models/techsection");
 const Gurulink = require("./models/gurulink");
 const Message = require("./models/message");
 const Todo = require("./models/todo");
 const User = require("./models/user");
-const { options } = require("./routes/auth");
-const { exists, db } = require("./models/todo");
+// const { options } = require("./routes/auth");
+// const { exists, db } = require("./models/todo");
 
 function seedDB() {
   Gurulink.deleteMany()
@@ -61,10 +62,6 @@ function seedDB() {
               console.error(error);
             });
         })
-        .catch((error) => {
-          console.log("outer error ...");
-          console.error(error);
-        });
     });
 }
 
