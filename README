@@ -97,3 +97,5 @@ https://gist.github.com/bradtraversy/cd90d1ed3c462fe3bddd11bf8953a896
 
   Since MongoDB version 6, the mongo terminal command is no longer included as a way to start the MongoDB shell.
   After we install the MongoDB Shell using the instructions below, we get the mongosh terminal command.
+
+# Remember to setup .env in haiyan folder
