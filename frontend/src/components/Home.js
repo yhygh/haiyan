@@ -26,34 +26,27 @@ const Home = () => {
         <img src={HaiyanHead} alt="Haiyan Head Shot" />
       </div>
       <div className="intro">
-        <h4>To be a real developer, not an executor.</h4>
+        <h4>To be a developer, not an executor.</h4>
         <p>
-          It seems a pretty straightforward task to build a website simply
-          following a tutorial. However, I quickly learned that this is not true
-          once I became a full stack engineer. Without truly understanding
-          JavaScript, the idea of any framework or tool, it will become
-          impossible to address the challenges that come daily: performance,
-          scalability, refactor, security, etc. Yet, the web development
-          community uses a ton of frameworks that are changing rapidly. I've run
-          into many sticky situations at work when a problem was triggered due
-          to misunderstanding of the ideas of a framework. That's why{" "}
-          <strong>UNDERSTANDING </strong>
-          has become a constanct goal of mine. I believe this effort is what
-          makes me a real engineer, not a web framework executor. Luckily, I
-          found engineers who shared my views.
+          Building a website is not as simple as it seems to be. Sure, there's
+          no shortage of web development tutorials. However, how do you choose
+          the right thing to learn and apply at work? It all comes down to one
+          principle:
+          <strong> DON’T IMITATE, UNDERSTAND.</strong> This is from my favorite
+          web course instructor, <strong>Tony Alicea</strong>, the author of
+          <strong>JavaScript: Understanding the Weird Parts</strong>. There's no
+          other engineer like him out there that has impacted me so deeply.
         </p>
 
         <p>
-          My favorite web course instructor is <strong>Tony Alicea</strong>, the
-          author of
-          <strong>JavaScript: Understanding the Weird Parts</strong>. Since I
-          took that course, I bought all of Tony's courses, including the latest
-          one:{" "}
-          <a href="https://dontimitateunderstand.com/p/understanding-react">
-            Understanding React
-          </a>
-          . There's no other person like him out there. It is my ultimate goal
-          to become an engineer like him and make my team thrive.
+          I have run into many sticky situations at work that were caused by
+          misunderstanding of a library, a framework, or even the JavaScript
+          language. Creating a working website and a website with good
+          performance, security, scalability, and maintainability are two
+          different things. A thriving team needs engineers who truly understand
+          how each tech stack works. I always try to be one of those. I believe
+          this effort is what makes me a real engineer, not a web framework
+          executor.
         </p>
 
         <p>
