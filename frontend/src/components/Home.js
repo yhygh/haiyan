@@ -27,26 +27,36 @@ const Home = () => {
       </div>
       <div className="intro">
         <h4>To be a developer, not an executor.</h4>
+
         <p>
-          Building a website is not as simple as it seems to be. Sure, there's
-          no shortage of web development tutorials. However, how do you choose
-          the right thing to learn and apply at work? It all comes down to one
-          principle:
-          <strong> DON’T IMITATE, UNDERSTAND.</strong> This is from my favorite
-          web course instructor, <strong>Tony Alicea</strong>, the author of
+          Building a website with good performance, security, scalability, and
+          maintainability requires far more than following a web development
+          tutorial or any framework template. I have run into quite a few sticky
+          situations in production that were triggered by misusage of a library,
+          a framework, or even the JavaScript language. An easy task eventually
+          turned into a very expensive or an impossible task without
+          redeveloping the whole feature. How did this happen? Or how to avoid
+          such kind of disaster from happening again? I have realized that it
+          all comes down to one principle:
+          <strong> DON’T IMITATE, UNDERSTAND.</strong> This is a principle that
+          was advocated by <strong>Tony Alicea</strong>, my favorite web course
+          instructor, and the author of
           <strong>JavaScript: Understanding the Weird Parts</strong>. There's no
           other engineer like him out there that has impacted me so deeply.
         </p>
 
         <p>
-          I have run into many sticky situations at work that were caused by
-          misunderstanding of a library, a framework, or even the JavaScript
-          language. Creating a working website and a website with good
-          performance, security, scalability, and maintainability are two
-          different things. A thriving team needs engineers who truly understand
-          how each tech stack works. I always try to be one of those. I believe
-          this effort is what makes me a real engineer, not a web framework
-          executor.
+          Working in a fast growing technical world, engineers have to
+          constantly learn new skills, almost every day. While learning is a
+          very rewarding thing to do, it does take time. How to decide what to
+          learn? Once again, try to learn the fundamentals and understand the
+          idea of the original author. To give an example: an engineer who truly
+          understand how React works would be very careful adding an extra{" "}
+          <strong>div</strong> tag because it will affect the performance. Yet
+          I've seen numerous usage of the div tags when they could be removed. A
+          thriving team needs engineers who truly understand how each tech stack
+          works. I always try to be one of those. I believe this effort is what
+          makes me a real engineer, not a web framework executor.
         </p>
 
         <p>
